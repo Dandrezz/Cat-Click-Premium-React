@@ -7,14 +7,16 @@ function App() {
 
   const [counter, setCounter] = useState(0);
   const [imagenGato, setImagenGato] = useState('cat1.jpg');
+  const [name, setName] = useState('Antoneli');
 
   const handleAdd = () => {
     setCounter(counter + 1);
   }
 
-  const handleChangeImg = ( gatoSeleccionado ) => {
+  const handleChangeImg = ( gatoSeleccionado, nombreGatoSeleccionado ) => {
     setImagenGato( gatoSeleccionado );
     setCounter( 0 );
+    setName( nombreGatoSeleccionado )
   }
 
   return (
@@ -25,14 +27,14 @@ function App() {
           {gatosNombres.map((gato,i) =>
             <button
               key={gato}
-              onClick={ () => handleChangeImg( gatosSRC[i] ) }
+              onClick={ () => handleChangeImg( gatosSRC[i], gatosNombres[i] ) }
               className="bg-orange-500 hover:bg-orange-700 py-2 px-4 rounded mt-2 font-bold text-white">
               {gato}
             </button>
           )}
         </div>
         <div className="col-span-1 text-center px-4 py-2 m-2 border-solid border-2 block">
-          <div className="my-3 text-2xl font-bold">Valoteli</div>
+          <div className="my-3 text-2xl font-bold">{ name }</div>
           <img onClick={handleAdd} src={ `./assets/images/${ imagenGato }` } alt="Gato" className="mx-auto h-64 rounded-lg animate__animated animate__fadeIn"></ img>
           <div className="my-3 text-xl">{counter}</div>
         </div>
